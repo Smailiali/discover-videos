@@ -49,22 +49,18 @@ const Video = ({ video }) => {
   } = video;
 
   useEffect(() => {
-    async function getData() {
-      console.log("Fetching data for videoId:", videoId); // Added log for videoId
+    async function getData() { // Added log for videoId
       const response = await fetch(`/api/stats?videoId=${videoId}`, {
         method: "GET",
       });
       const data = await response.json();
-
-      console.log("Fetched video data:", data); // Log the data fetched from API
+// Log the data fetched from API
 
       if (data.length > 0) {
         const favourited = data[0].favourited;
         if (favourited === 1) {
-          console.log("Video favourited: Setting toggleLike to true");
           setToggleLike(true);
         } else if (favourited === 0) {
-          console.log("Video not favourited: Setting toggleDisLike to true");
           setToggleDisLike(true);
         }
       }
